@@ -14,18 +14,17 @@ class SinhVien{
 $arr= array();
 
 //3.Connect to databse
-$conn=mysqli_connect("localhost","root","","sinhvien");
-mysqli_query($conn,"SET NAMES 'utf8'");
+require_once 'dbconn.php';
+
 
 //4.them phan tu mang
 $sql="SELECT * FROM contact";
-$data=mysqli_query($conn,$sql);
+$data=$conn->query($sql);
 foreach($data as $row){ 
   array_push($arr,new SinhVien($row['id'],$row['name'],$row['age'],$row['address']));
 }
 
 //4.chuyen dinh dang mang -Json
 json_encode($arr);
-$test=json_encode($arr);
 echo json_encode($arr);
 ?>
